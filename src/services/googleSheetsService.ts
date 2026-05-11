@@ -5,7 +5,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziieZ9RFcFCo
 export const sendToGoogleSheets = async (data: any): Promise<boolean> => {
     try {
         // Используем fetch вместо axios для лучшей совместимости
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors', // Важно: no-cors режим
             headers: {

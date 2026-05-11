@@ -1,6 +1,5 @@
 import React from 'react';
-import { ToggleButton, ToggleButtonGroup, Box, Tooltip, Paper } from '@mui/material';
-import { Language as LanguageIcon } from '@mui/icons-material';
+import { ToggleButton, ToggleButtonGroup, Box, Paper } from '@mui/material';
 import type {Language} from '../locales/locales';
 
 interface LanguageSwitcherProps {
@@ -13,7 +12,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                                                                       onLanguageChange,
                                                                   }) => {
     const handleChange = (
-        event: React.MouseEvent<HTMLElement>,
+        _event: React.MouseEvent<HTMLElement>,
         newLanguage: Language | null
     ) => {
         if (newLanguage !== null) {

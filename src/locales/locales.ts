@@ -6,6 +6,11 @@ export interface Translations {
     couple: string;
     location: string;
 
+    schedule: string;
+    transfer: string;
+    gifts: string;
+    menu: string;
+
     // Dress code
     dressCode: string;
     dressCodeDescription: string;
@@ -47,6 +52,11 @@ export const translations: Record<Language, Translations> = {
         couple: 'Лёхица & Махица',
         location: '📍 Москва, Онегин | 🗓 26 сентября 2026 | ⏰ 15:00',
 
+        schedule: 'Расписание дня',
+        transfer: 'Сбор и трансфер',
+        gifts: 'Что дарить?',
+        menu: 'Меню',
+
         // Dress code
         dressCode: 'Дресс-код: Evening Formal',
         dressCodeDescription: 'Вечерний наряд. Приветствуются элегантные платья и костюмы.',
@@ -85,6 +95,11 @@ export const translations: Record<Language, Translations> = {
         wedding: 'Our Wedding',
         couple: 'Lyohica & Mahica',
         location: '📍 Moscow, Onegin | 🗓 September 26, 2026 | ⏰ 3:00 PM',
+
+        schedule: 'Schedule',
+        transfer: 'Meeting Point & Transfer',
+        gifts: 'Gifts',
+        menu: 'Menu',
 
         // Dress code
         dressCode: 'Dress Code: Evening Formal',
