@@ -123,12 +123,12 @@ export const getMenuData = (language: 'ru' | 'en'): InfoItem[] => [
 ];
 
 export const dressCodeColors = [
-    { nameRu: 'Лимонный Взбитый', nameEn: 'Lemon Whip', code: '#f8e473', hex: '#F8E473' },
-    { nameRu: 'Солнечный Поп', nameEn: 'Sun Pop', code: '#ffb40f', hex: '#FFB40F' },
-    { nameRu: 'Бабблтини', nameEn: 'Bubbletini', code: '#e41e71', hex: '#E41E71' },
-    { nameRu: 'Дынный Поп', nameEn: 'Melon Pop', code: '#a7b408', hex: '#A7B408' },
-    { nameRu: 'Авокадо', nameEn: 'Avocado', code: '#6b8e23', hex: '#6B8E23' },
-    { nameRu: 'Бризовый Порт', nameEn: 'Breezy Harbor', code: '#96c1dd', hex: '#96C1DD' },
-    { nameRu: 'Персиковый Закат', nameEn: 'Peach Sunset', code: '#ffb347', hex: '#FFB347' },
-    { nameRu: 'Мятная Свежесть', nameEn: 'Mint Fresh', code: '#98ff98', hex: '#98FF98' },
+    { nameRu: 'Лимонный Взбитый', nameEn: 'Lemon Whip', code: '#f5e2a2', hex: '#F8E473' },
+    { nameRu: 'Солнечный Поп', nameEn: 'Sun Pop', code: '#f8dda2', hex: '#FFB40F' },
+    { nameRu: 'Бабблтини', nameEn: 'Bubbletini', code: '#faa0c5', hex: '#E41E71' },
+    { nameRu: 'Дынный Поп', nameEn: 'Melon Pop', code: '#b2b682', hex: '#A7B408' },
+    { nameRu: 'Авокадо', nameEn: 'Avocado', code: '#7d8c5f', hex: '#6B8E23' },
+    { nameRu: 'Бризовый Порт', nameEn: 'Breezy Harbor', code: '#a9c7da', hex: '#96C1DD' },
+    { nameRu: 'Персиковый Закат', nameEn: 'Peach Sunset', code: '#f4d5a9', hex: '#FFB347' },
+    { nameRu: 'Мятная Свежесть', nameEn: 'Mint Fresh', code: '#b0f8b0', hex: '#98FF98' },
 ];
