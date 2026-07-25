@@ -3,10 +3,8 @@ import {
     Box,
     Typography,
     Container,
-    useMediaQuery,
     TextField,
     FormControl,
-    FormLabel,
     RadioGroup,
     FormControlLabel,
     Radio,
@@ -56,7 +54,6 @@ const FloatingImage = styled(Box)(({theme}) => ({
 
 export const CreativeWeddingLayout: React.FC = () => {
     const {t, language, changeLanguage} = useTranslation();
-    const isMobile = useMediaQuery('(max-width:900px)');
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info'>('success');

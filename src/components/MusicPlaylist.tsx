@@ -222,7 +222,7 @@ export const MusicPlaylist: React.FC<MusicPlaylistProps> = ({ language }) => {
     const [duration, setDuration] = useState<{ [key: string]: number }>({});
 
     const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
-    const intervalRefs = useRef<{ [key: string]: NodeJS.Timeout }>({});
+    const intervalRefs = useRef<{ [key: string]: ReturnType<typeof setTimeout> }>({});
 
     const pauseSong = useCallback((id: string) => {
         if (audioRefs.current[id]) {
@@ -251,8 +251,9 @@ export const MusicPlaylist: React.FC<MusicPlaylistProps> = ({ language }) => {
         setProgress(prev => ({ ...prev, [id]: 0 }));
     }, [playingId]);
 
+    // В функции playSong
     const playSong = useCallback((id: string, url: string) => {
-        // Останавливаем текущую песню (сбрасываем её)
+        // Останавливаем текущую песню
         if (playingId && playingId !== id) {
             stopSong(playingId);
         }
@@ -260,13 +261,30 @@ export const MusicPlaylist: React.FC<MusicPlaylistProps> = ({ language }) => {
         let audio = audioRefs.current[id];
 
         if (!audio) {
-            audio = new Audio(url);
-            audio.addEventListener('loadedmetadata', () => {
-                if (audio && audio.duration) {
-                    setDuration(prev => ({ ...prev, [id]: audio.duration }));
+            // Создаём новый аудио элемент
+            const newAudio = new Audio(url);
+
+            // Добавляем слушатель события
+            newAudio.addEventListener('loadedmetadata', () => {
+                // Проверяем, что аудио существует и имеет длительность
+                if (newAudio && newAudio.duration && isFinite(newAudio.duration)) {
+                    setDuration(prev => ({ ...prev, [id]: newAudio.duration }));
                 }
             });
-            audioRefs.current[id] = audio;
+
+            // Добавляем слушатель окончания
+            newAudio.addEventListener('ended', () => {
+                stopSong(id);
+            });
+
+            audioRefs.current[id] = newAudio;
+            audio = newAudio;
+        }
+
+        // Теперь audio точно существует, но TypeScript может не знать об этом
+        // Добавляем проверку на всякий случай
+        if (!audio) {
+            return;
         }
 
         // Если песня уже была на паузе и есть прогресс

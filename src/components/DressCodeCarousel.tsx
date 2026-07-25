@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, IconButton, useMediaQuery } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import dressPhoto1 from '../assets/images/carousel/image-1.png';
 import dressPhoto2 from '../assets/images/carousel/image-2.png';
@@ -13,7 +13,7 @@ interface DressCodeCarouselProps {
     language: 'ru' | 'sr';
 }
 
-const getImagesData = (language: 'ru' | 'sr') => [
+const getImagesData = () => [
     {
         url: dressPhoto1,
     },
@@ -35,9 +35,8 @@ const getImagesData = (language: 'ru' | 'sr') => [
 ];
 
 export const DressCodeCarousel: React.FC<DressCodeCarouselProps> = ({ title, language }) => {
-    const isMobile = useMediaQuery('(max-width:600px)');
     const [currentIndex, setCurrentIndex] = useState(0);
-    const imagesData = getImagesData(language);
+    const imagesData = getImagesData();
 
     useEffect(() => {
         setCurrentIndex(0);
