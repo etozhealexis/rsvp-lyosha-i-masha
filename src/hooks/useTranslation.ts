@@ -17,7 +17,7 @@ export const useTranslation = () => {
     // Загружаем сохраненный язык при инициализации
     useState(() => {
         const savedLanguage = localStorage.getItem('language') as Language;
-        if (savedLanguage && (savedLanguage === 'ru' || savedLanguage === 'en')) {
+        if (savedLanguage && (savedLanguage === 'ru' || savedLanguage === 'sr')) {
             setLanguage(savedLanguage);
         }
     });

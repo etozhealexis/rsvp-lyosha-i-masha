@@ -9,7 +9,7 @@ export interface InfoItem {
     description: string;
 }
 
-export const getScheduleData = (language: 'ru' | 'en'): ScheduleItem[] => [
+export const getScheduleData = (language: 'ru' | 'sr'): ScheduleItem[] => [
     {
         time: '15:00',
         title: language === 'ru' ? 'Сбор гостей' : 'Guest Gathering',
@@ -47,7 +47,7 @@ export const getScheduleData = (language: 'ru' | 'en'): ScheduleItem[] => [
     },
 ];
 
-export const getTransferData = (language: 'ru' | 'en'): InfoItem[] => [
+export const getTransferData = (language: 'ru' | 'sr'): InfoItem[] => [
     {
         title: language === 'ru' ? '📍 Место сбора' : '📍 Meeting Point',
         description: language === 'ru'
@@ -74,7 +74,7 @@ export const getTransferData = (language: 'ru' | 'en'): InfoItem[] => [
     },
 ];
 
-export const getGiftsData = (language: 'ru' | 'en'): InfoItem[] => [
+export const getGiftsData = (language: 'ru' | 'sr'): InfoItem[] => [
     {
         title: language === 'ru' ? '💝 Главное пожелание' : '💝 Main Wish',
         description: language === 'ru'
@@ -95,7 +95,7 @@ export const getGiftsData = (language: 'ru' | 'en'): InfoItem[] => [
     },
 ];
 
-export const getMenuData = (language: 'ru' | 'en'): InfoItem[] => [
+export const getMenuData = (language: 'ru' | 'sr'): InfoItem[] => [
     {
         title: language === 'ru' ? '🥗 Холодные закуски' : '🥗 Cold Appetizers',
         description: language === 'ru'

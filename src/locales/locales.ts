@@ -1,15 +1,10 @@
-export type Language = 'ru' | 'en';
+export type Language = 'ru' | 'sr';
 
 export interface Translations {
     // Hero section
     wedding: string;
     couple: string;
     location: string;
-
-    schedule: string;
-    transfer: string;
-    gifts: string;
-    menu: string;
 
     // Dress code
     dressCode: string;
@@ -43,95 +38,90 @@ export interface Translations {
 
     // Navigation
     language: string;
+
+    // Additional
+    schedule: string;
+    transfer: string;
+    gifts: string;
+    menu: string;
 }
 
 export const translations: Record<Language, Translations> = {
     ru: {
-        // Hero section
         wedding: 'Наша свадьба',
-        couple: 'Лёхица & Махица',
-        location: '📍 Москва, Онегин | 🗓 26 сентября 2026 | ⏰ 15:00',
+        couple: 'Маша и Лёша',
+        location: '📍 Городской округ Пушкинский, Загородный клуб «Онегин», Малая веранда | 🗓 26 Сентября 2026 | ⏰ 16:00',
 
-        schedule: 'Расписание дня',
-        transfer: 'Сбор и трансфер',
-        gifts: 'Что дарить?',
-        menu: 'Меню',
-
-        // Dress code
         dressCode: 'Дресс-код: Evening Formal',
         dressCodeDescription: 'Вечерний наряд. Приветствуются элегантные платья и костюмы.',
         recommendedPalette: 'Рекомендуемая цветовая палитра:',
-        blackTie: '✨ Черный галстук по желанию',
-        formalSuits: '👔 Классические костюмы',
+        blackTie: '✨ Black Tie Optional',
+        formalSuits: '👔 Классические костюми',
         eveningGowns: '💃 Вечерние платья',
         dressShoes: '👠 Классическая обувь',
 
-        // RSVP Form
         confirmAttendance: 'Подтвердите присутствие',
         pleaseRespondBy: 'Пожалуйста, ответьте до 1 июня 2024',
-        yourName: 'Ваше имя',
+        yourName: 'Ваше имя и фамилия',
         yourNamePlaceholder: 'Например: Александр',
         willYouAttend: 'Вы сможете присутствовать?',
         yesAttend: '✅ Да, приду',
         noAttend: '❌ Нет, не смогу',
         submitResponse: 'Отправить ответ',
 
-        // Event details
         buffetDinner: 'Фуршет & Ужин',
         exquisiteMenu: 'Изысканное меню от шеф-повара',
         liveMusic: 'Живая музыка',
         djAndArtists: 'DJ и приглашенные артисты',
 
-        // Messages
         thankYouYes: 'Спасибо! Ждем вас на празднике! 🎉',
         thankYouNo: 'Нам будет вас не хватать. Спасибо за ответ! 💔',
         pleaseEnterName: 'Пожалуйста, укажите ваше имя',
 
-        // Navigation
         language: 'Язык',
+
+        schedule: 'Расписание дня',
+        transfer: 'Сбор и трансфер',
+        gifts: 'Что дарить?',
+        menu: 'Меню',
     },
-    en: {
-        // Hero section
-        wedding: 'Our Wedding',
-        couple: 'Lyohica & Mahica',
-        location: '📍 Moscow, Onegin | 🗓 September 26, 2026 | ⏰ 3:00 PM',
 
-        schedule: 'Schedule',
-        transfer: 'Meeting Point & Transfer',
-        gifts: 'Gifts',
-        menu: 'Menu',
+    sr: {
+        wedding: 'Наше венчање',
+        couple: 'Лjоша и Маша',
+        location: '📍 Москва, Ресторан "Инспирација" | 🗓 15. Јун 2024 | ⏰ 18:00',
 
-        // Dress code
-        dressCode: 'Dress Code: Evening Formal',
-        dressCodeDescription: 'Evening attire. Elegant dresses and suits are welcome.',
-        recommendedPalette: 'Recommended color palette:',
+        dressCode: 'Кодекс облачења: Evening Formal',
+        dressCodeDescription: 'Вечерња одећа. Добродошле су елегантне хаљине и одели.',
+        recommendedPalette: 'Препоручена палета боја:',
         blackTie: '✨ Black Tie Optional',
-        formalSuits: '👔 Formal Suits',
-        eveningGowns: '💃 Evening Gowns',
-        dressShoes: '👠 Dress Shoes',
+        formalSuits: '👔 Класична одела',
+        eveningGowns: '💃 Вечерње хаљине',
+        dressShoes: '👠 Класична обућа',
 
-        // RSVP Form
-        confirmAttendance: 'Confirm Attendance',
-        pleaseRespondBy: 'Please respond by June 1, 2024',
-        yourName: 'Your name',
-        yourNamePlaceholder: 'e.g., Alexander',
-        willYouAttend: 'Will you attend?',
-        yesAttend: '✅ Yes, I will attend',
-        noAttend: '❌ No, I cannot attend',
-        submitResponse: 'Submit Response',
+        confirmAttendance: 'Потврдите присуство',
+        pleaseRespondBy: 'Молимо вас да одговорите до 1. јуна 2024.',
+        yourName: 'Ваше име и презиме',
+        yourNamePlaceholder: 'На пример: Александар',
+        willYouAttend: 'Моћи ћете да присуствујете?',
+        yesAttend: '✅ Да, доћи ћу',
+        noAttend: '❌ Не, нећу моћи',
+        submitResponse: 'Пошаљи одговор',
 
-        // Event details
-        buffetDinner: 'Buffet & Dinner',
-        exquisiteMenu: 'Exquisite menu from the chef',
-        liveMusic: 'Live Music',
-        djAndArtists: 'DJ and invited artists',
+        buffetDinner: 'Шведски сто & Вечера',
+        exquisiteMenu: 'Изврстан мени од шеф-кувара',
+        liveMusic: 'Уживо музика',
+        djAndArtists: 'DJ и позвани уметници',
 
-        // Messages
-        thankYouYes: 'Thank you! We look forward to celebrating with you! 🎉',
-        thankYouNo: 'We will miss you. Thank you for your response! 💔',
-        pleaseEnterName: 'Please enter your name',
+        thankYouYes: 'Хвала вам! Чекамо вас на прослави! 🎉',
+        thankYouNo: 'Недостајаћете нам. Хвала на одговору! 💔',
+        pleaseEnterName: 'Молимо вас да унесете ваше име',
 
-        // Navigation
-        language: 'Language',
+        language: 'Језик',
+
+        schedule: 'Распорeд дана',
+        transfer: 'Окупљање и трансфер',
+        gifts: 'Шта поклонити?',
+        menu: 'Мени',
     },
 };

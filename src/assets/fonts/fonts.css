@@ -1,0 +1,29 @@
+/*@font-face {*/
+/*    font-family: 'CranberryJam';*/
+/*    src: url('./CranberryJam-SansSerif.woff') format('woff');*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: 'CranberryJam';*/
+/*    src: url('./CranberryJam-Script.woff') format('woff');*/
+/*    font-weight: 700;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: 'CranberryJam';*/
+/*    src: url('./CranberryJam-Serif.woff') format('woff');*/
+/*    font-weight: 400;*/
+/*    font-style: italic;*/
+/*    font-display: swap;*/
+/*}*/
+
+@font-face {
+    font-family: 'Verveine';
+    src: url('./ver/VerveineCorp.otf') format('opentype');
+    font-weight: 400;
+}

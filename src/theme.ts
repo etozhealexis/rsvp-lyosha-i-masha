@@ -15,7 +15,7 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontFamily: '"Verveine", "CranberryJam", "Roboto", "Helvetica", "Arial", sans-serif',
         h3: {
             fontSize: '2.5rem',
             '@media (max-width:600px)': {

@@ -47,11 +47,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                             },
                         }}
                     >
-                        🇷🇺 RU
+                        🇷🇺 РУ
                     </ToggleButton>
                     <ToggleButton
-                        value="en"
-                        aria-label="english"
+                        value="sr"
+                        aria-label="serbian"
                         sx={{
                             px: 2,
                             py: 1,
@@ -64,7 +64,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
                             },
                         }}
                     >
-                        🇬🇧 EN
+                        🇷🇸 СР
                     </ToggleButton>
                 </ToggleButtonGroup>
             </Paper>

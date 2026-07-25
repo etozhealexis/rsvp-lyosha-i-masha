@@ -64,7 +64,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
                                     }
                                 }}
                             >
-                                <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
+                                <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
                                     {item.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
