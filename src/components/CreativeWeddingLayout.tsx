@@ -118,27 +118,27 @@ export const CreativeWeddingLayout: React.FC = () => {
         invitation: {
             greeting: language === 'ru'
                 ? 'Дорогие, родные и близкие! Приглашаем вас на наш первый семейный праздник - нашу свадьбу!'
-                : 'Драги, рођаци и вољени! Позивамо вас на нашу прву породичну прославу - наше венчање!',
-            when: language === 'ru' ? 'Будем ждать вас' : 'Сачекаћемо вас',
+                : 'Драги наши, родбино и пријатељи! Позивамо вас да са нама поделите радост нашег првог породичног славља – нашег венчања!',
+            when: language === 'ru' ? 'Будем ждать вас' : 'Са радошћу вас очекујемо',
             where: language === 'ru' ? 'Встретимся' : 'Видимо се',
             whereDesc: language === 'ru'
                 ? 'среди зелёного леса на малой веранде '
-                : 'међу зеленом шумом на малој веранди '
+                : 'у срцу зелене шуме, на малој веранди  '
         },
         schedule: {
-            title: language === 'ru' ? 'Что вас ждёт:' : 'Шта ће бити:',
+            title: language === 'ru' ? 'Что вас ждёт:' : 'Како ће изгледати наш дан:',
             items: [
-                {time: '16:00', title: language === 'ru' ? 'Сбор гостей' : 'Окупљање гостију', desc: ''},
-                {time: '16:45', title: language === 'ru' ? 'Церемония' : 'Церемонија', desc: ''},
-                {time: '17:30', title: language === 'ru' ? 'Свадебный ужин' : 'Свадбена вечера', desc: ''},
-                {time: '22:00', title: language === 'ru' ? 'Завершение банкета' : 'Завршетак банкета', desc: ''},
-                {time: '23:00', title: language === 'ru' ? 'Трансфер до ВДНХ' : 'Званични завршетак', desc: ''},
+                {time: '16:00', title: language === 'ru' ? 'Сбор гостей' : 'Дочек гостију', desc: ''},
+                {time: '16:45', title: language === 'ru' ? 'Церемония' : 'Церемонија венчања', desc: ''},
+                {time: '17:30', title: language === 'ru' ? 'Свадебный ужин' : 'Свечана вечера и свадбено славље', desc: ''},
+                {time: '22:00', title: language === 'ru' ? 'Завершение банкета' : 'Завршетак свечаности', desc: ''},
+                {time: '23:00', title: language === 'ru' ? 'Трансфер до ВДНХ' : 'Организован превоз до ВДНХ', desc: ''},
             ],
         },
         gifts: {
             text: language === 'ru'
                 ? 'Не ломайте голову - ваши пожелания в конвертах станут ключом к нашим мечтам.'
-                : 'Не разбијајте мозак-ваше жеље у ковертама биће кључне за наше снове.',
+                : 'Не оптерећујте се избором поклона – ваша пажња у коверти помоћи ће нам да остваримо своје снове.',
         },
     };
 
@@ -326,7 +326,7 @@ export const CreativeWeddingLayout: React.FC = () => {
                     <Box
                         component="img"
                         src={china}
-                        alt={language === 'ru' ? 'Маша и Лёша' : 'Маша и Лjоша'}
+                        alt={language === 'ru' ? 'Маша и Лёша' : 'Маша и Љоша'}
                         sx={{
                             width: '100%',
                             maxWidth: 400,
@@ -399,7 +399,7 @@ export const CreativeWeddingLayout: React.FC = () => {
                                 </Typography>
                                 <br/>
                                 <Typography variant="h2" sx={{fontSize: '3rem', fontWeight: 800, color: '#e41e71'}}>
-                                    {language === 'ru' ? '26 сентября 2026' : '26. Септембра 2026.'}
+                                    {language === 'ru' ? '26 сентября 2026' : '26. септембра 2026. године'}
                                 </Typography>
                             </RotatedBox>
 
@@ -432,7 +432,7 @@ export const CreativeWeddingLayout: React.FC = () => {
                                             rel="noopener noreferrer"
                                             style={{color: '#e41e71', textDecoration: 'underline'}}
                                         >
-                                            Загородног клуба «Онегин», ГО Пушкинский
+                                            Загородног клуба «Оњегин»
                                         </a>
                                     }
                                 </Typography>
@@ -515,7 +515,7 @@ export const CreativeWeddingLayout: React.FC = () => {
                     {/* Левая колонка - карусель */}
                     <Box sx={{flex: 1}}>
                         <DressCodeCarousel
-                            title={language === 'ru' ? 'Примеры для вдохновения' : 'Примери за инспирацију'}
+                            title={language === 'ru' ? 'Примеры для вдохновения' : 'Инспирација за ваш избор'}
                             language={language}
                         />
                     </Box>
@@ -601,6 +601,15 @@ export const CreativeWeddingLayout: React.FC = () => {
                             }}
                         />
                     </FloatingImage>
+
+                    <Typography variant="h4" sx={{mb: 4, fontWeight: 300}}>
+                        { language === 'ru' ?
+                            'По вопросам можете обращаться к нашему организатору.'
+                            :
+                            'Уколико имате било каквих питања, наша организаторка ће вам радо помоћи.'}
+                        <br/>
+                        +7 (951) 673-47-37, Вероника
+                    </Typography>
 
                     <Typography variant="h4" sx={{mb: 4, fontWeight: 600}}>
                         {t('confirmAttendance')}

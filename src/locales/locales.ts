@@ -60,7 +60,7 @@ export const translations: Record<Language, Translations> = {
         eveningGowns: '💃 Вечерние платья',
         dressShoes: '👠 Классическая обувь',
 
-        confirmAttendance: 'Подтвердите присутствие',
+        confirmAttendance: 'Подтвердите присутствие до 14 августа',
         pleaseRespondBy: 'Пожалуйста, ответьте до 1 июня 2024',
         yourName: 'Ваше имя и фамилия',
         yourNamePlaceholder: 'Например: Александр',
@@ -88,7 +88,7 @@ export const translations: Record<Language, Translations> = {
 
     sr: {
         wedding: 'Наше венчање',
-        couple: 'Лjоша и Маша',
+        couple: 'Љоша и Маша',
         location: '📍 Москва, Ресторан "Инспирација" | 🗓 15. Јун 2024 | ⏰ 18:00',
 
         dressCode: 'Кодекс облачења: Evening Formal',
@@ -99,21 +99,21 @@ export const translations: Record<Language, Translations> = {
         eveningGowns: '💃 Вечерње хаљине',
         dressShoes: '👠 Класична обућа',
 
-        confirmAttendance: 'Потврдите присуство',
+        confirmAttendance: 'Молимо вас да свој долазак потврдите најкасније до 1. септембра.',
         pleaseRespondBy: 'Молимо вас да одговорите до 1. јуна 2024.',
         yourName: 'Ваше име и презиме',
         yourNamePlaceholder: 'На пример: Александар',
         willYouAttend: 'Моћи ћете да присуствујете?',
         yesAttend: '✅ Да, доћи ћу',
         noAttend: '❌ Не, нећу моћи',
-        submitResponse: 'Пошаљи одговор',
+        submitResponse: 'Потврди долазак',
 
         buffetDinner: 'Шведски сто & Вечера',
         exquisiteMenu: 'Изврстан мени од шеф-кувара',
         liveMusic: 'Уживо музика',
         djAndArtists: 'DJ и позвани уметници',
 
-        thankYouYes: 'Хвала вам! Чекамо вас на прослави! 🎉',
+        thankYouYes: 'Хвала вам! Чекамо вас на нашем венчању! 🎉',
         thankYouNo: 'Недостајаћете нам. Хвала на одговору! 💔',
         pleaseEnterName: 'Молимо вас да унесете ваше име',
 

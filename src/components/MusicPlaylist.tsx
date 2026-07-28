@@ -381,7 +381,7 @@ export const MusicPlaylist: React.FC<MusicPlaylistProps> = ({ language }) => {
             >
                 {language === 'ru'
                     ? '· DJs MaRussia и Alexis собрали свои любимые треки ·'
-                    : '· DJs MaRussia и Alexis сакупили су своје омиљене песме ·'}
+                    : '· DJs MaRussia и Alexis су за вас припремили своје омиљене нумере ·'}
             </Typography>
 
             <Box sx={{
