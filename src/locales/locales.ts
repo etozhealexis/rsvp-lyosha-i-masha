@@ -60,7 +60,7 @@ export const translations: Record<Language, Translations> = {
         eveningGowns: '💃 Вечерние платья',
         dressShoes: '👠 Классическая обувь',
 
-        confirmAttendance: 'Подтвердите присутствие до 14 августа',
+        confirmAttendance: 'Подтвердите присутствие до 1 сентября',
         pleaseRespondBy: 'Пожалуйста, ответьте до 1 июня 2024',
         yourName: 'Ваше имя и фамилия',
         yourNamePlaceholder: 'Например: Александр',

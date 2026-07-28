@@ -423,7 +423,7 @@ export const CreativeWeddingLayout: React.FC = () => {
                                             rel="noopener noreferrer"
                                             style={{color: '#e41e71', textDecoration: 'underline'}}
                                         >
-                                            Загородного клуба «Онегин», ГО Пушкинский
+                                            Загородного клуба «Онегин»
                                         </a>
                                         :
                                         <a
@@ -609,6 +609,24 @@ export const CreativeWeddingLayout: React.FC = () => {
                             'Уколико имате било каквих питања, наша организаторка ће вам радо помоћи.'}
                         <br/>
                         +7 (951) 673-47-37, Вероника
+                        <br/>
+                        <a
+                            href="https://t.me/korotina_v"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{color: '#24a1de', textDecoration: 'underline'}}
+                        >
+                            Telegram
+                        </a>
+                        ,&nbsp;
+                        <a
+                            href="https://wa.me/send?phone=79516734737"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{color: '#25d366', textDecoration: 'underline'}}
+                        >
+                            WhatsApp
+                        </a>
                     </Typography>
 
                     <Typography variant="h4" sx={{mb: 4, fontWeight: 600}}>
