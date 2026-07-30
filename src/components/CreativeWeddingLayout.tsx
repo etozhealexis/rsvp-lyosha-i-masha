@@ -88,15 +88,13 @@ export const CreativeWeddingLayout: React.FC = () => {
                     : `${formData.fullName}, ${t('thankYouNo')}`;
                 showSnackbar(message, 'success');
             } else {
-                const fallbackMessage = formData.attendance === 'yes'
-                    ? `${formData.fullName}, ${t('thankYouYes')} (${language === 'ru' ? 'сохранено локально' : 'saved locally'})`
-                    : `${formData.fullName}, ${t('thankYouNo')} (${language === 'ru' ? 'сохранено локально' : 'saved locally'})`;
-                showSnackbar(fallbackMessage, 'info');
+                const fallbackMessage = language === 'ru' ? 'Ошибка при отправке ответа. Попробуйте позже' : 'Грешка приликом слања одговора - покушајте касније'
+                showSnackbar(fallbackMessage, 'error');
             }
             setFormData({fullName: '', attendance: 'yes'});
         } catch (error) {
             showSnackbar(
-                language === 'ru' ? 'Ошибка при отправке. Попробуйте позже.' : 'Error submitting. Try again later.',
+                language === 'ru' ? 'Ошибка при отправке. Попробуйте позже.' : 'Грешка приликом слања одговора - покушајте касније',
                 'error'
             );
         } finally {
