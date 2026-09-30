@@ -1,29 +1,49 @@
-import React, { createContext, useContext, type ReactNode } from 'react';
-import { useTranslation } from '../hooks/useTranslation';
-import type {Language, Translations} from '../locales/locales';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import {
+  translations,
+  type Language,
+  type TranslationKey,
+} from "../locales/locales";
+import { LanguageContext } from "./language";
 
-interface LanguageContextType {
-    t: (key: keyof Translations) => string;
-    language: Language;
-    changeLanguage: (lang: Language) => void;
+function readLanguage(): Language {
+  try {
+    return localStorage.getItem("language") === "sr" ? "sr" : "ru";
+  } catch {
+    return "ru";
+  }
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const translation = useTranslation();
-
-    return (
-        <LanguageContext.Provider value={translation}>
-            {children}
-        </LanguageContext.Provider>
-    );
-};
-
-export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (!context) {
-        throw new Error('useLanguage must be used within LanguageProvider');
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>(readLanguage);
+  const changeLanguage = useCallback((next: Language) => {
+    setLanguage(next);
+    try {
+      localStorage.setItem("language", next);
+    } catch {
+      // The current session still works when browser storage is unavailable.
     }
-    return context;
-};
+  }, []);
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+  const t = useCallback(
+    (key: TranslationKey) => translations[language][key],
+    [language],
+  );
+  const value = useMemo(
+    () => ({ t, language, changeLanguage }),
+    [t, language, changeLanguage],
+  );
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}

@@ -1,127 +1,183 @@
-export type Language = 'ru' | 'sr';
+export type Language = "ru" | "sr";
 
-export interface Translations {
-    // Hero section
-    wedding: string;
-    couple: string;
-    location: string;
-
-    // Dress code
-    dressCode: string;
-    dressCodeDescription: string;
-    recommendedPalette: string;
-    blackTie: string;
-    formalSuits: string;
-    eveningGowns: string;
-    dressShoes: string;
-
-    // RSVP Form
-    confirmAttendance: string;
-    pleaseRespondBy: string;
-    yourName: string;
-    yourNamePlaceholder: string;
-    willYouAttend: string;
-    yesAttend: string;
-    noAttend: string;
-    submitResponse: string;
-
-    // Event details
-    buffetDinner: string;
-    exquisiteMenu: string;
-    liveMusic: string;
-    djAndArtists: string;
-
-    // Messages
-    thankYouYes: string;
-    thankYouNo: string;
-    pleaseEnterName: string;
-
-    // Navigation
-    language: string;
-
-    // Additional
-    schedule: string;
-    transfer: string;
-    gifts: string;
-    menu: string;
-}
-
-export const translations: Record<Language, Translations> = {
-    ru: {
-        wedding: 'Наша свадьба',
-        couple: 'Маша и Лёша',
-        location: '📍 Городской округ Пушкинский, Загородный клуб «Онегин», Малая веранда | 🗓 26 Сентября 2026 | ⏰ 16:00',
-
-        dressCode: 'Дресс-код: Evening Formal',
-        dressCodeDescription: 'Вечерний наряд. Приветствуются элегантные платья и костюмы.',
-        recommendedPalette: 'Рекомендуемая цветовая палитра:',
-        blackTie: '✨ Black Tie Optional',
-        formalSuits: '👔 Классические костюми',
-        eveningGowns: '💃 Вечерние платья',
-        dressShoes: '👠 Классическая обувь',
-
-        confirmAttendance: 'Подтвердите присутствие до 1 сентября',
-        pleaseRespondBy: 'Пожалуйста, ответьте до 1 июня 2024',
-        yourName: 'Ваше имя и фамилия',
-        yourNamePlaceholder: 'Например: Александр',
-        willYouAttend: 'Вы сможете присутствовать?',
-        yesAttend: '✅ Да, приду',
-        noAttend: '❌ Нет, не смогу',
-        submitResponse: 'Отправить ответ',
-
-        buffetDinner: 'Фуршет & Ужин',
-        exquisiteMenu: 'Изысканное меню от шеф-повара',
-        liveMusic: 'Живая музыка',
-        djAndArtists: 'DJ и приглашенные артисты',
-
-        thankYouYes: 'Спасибо! Ждем вас на празднике! 🎉',
-        thankYouNo: 'Нам будет вас не хватать. Спасибо за ответ! 💔',
-        pleaseEnterName: 'Пожалуйста, укажите ваше имя',
-
-        language: 'Язык',
-
-        schedule: 'Расписание дня',
-        transfer: 'Сбор и трансфер',
-        gifts: 'Что дарить?',
-        menu: 'Меню',
-    },
-
-    sr: {
-        wedding: 'Наше венчање',
-        couple: 'Љоша и Маша',
-        location: '📍 Москва, Ресторан "Инспирација" | 🗓 15. Јун 2024 | ⏰ 18:00',
-
-        dressCode: 'Кодекс облачења: Evening Formal',
-        dressCodeDescription: 'Вечерња одећа. Добродошле су елегантне хаљине и одели.',
-        recommendedPalette: 'Препоручена палета боја:',
-        blackTie: '✨ Black Tie Optional',
-        formalSuits: '👔 Класична одела',
-        eveningGowns: '💃 Вечерње хаљине',
-        dressShoes: '👠 Класична обућа',
-
-        confirmAttendance: 'Молимо вас да свој долазак потврдите најкасније до 1. септембра.',
-        pleaseRespondBy: 'Молимо вас да одговорите до 1. јуна 2024.',
-        yourName: 'Ваше име и презиме',
-        yourNamePlaceholder: 'На пример: Александар',
-        willYouAttend: 'Моћи ћете да присуствујете?',
-        yesAttend: '✅ Да, доћи ћу',
-        noAttend: '❌ Не, нећу моћи',
-        submitResponse: 'Потврди долазак',
-
-        buffetDinner: 'Шведски сто & Вечера',
-        exquisiteMenu: 'Изврстан мени од шеф-кувара',
-        liveMusic: 'Уживо музика',
-        djAndArtists: 'DJ и позвани уметници',
-
-        thankYouYes: 'Хвала вам! Чекамо вас на нашем венчању! 🎉',
-        thankYouNo: 'Недостајаћете нам. Хвала на одговору! 💔',
-        pleaseEnterName: 'Молимо вас да унесете ваше име',
-
-        language: 'Језик',
-
-        schedule: 'Распорeд дана',
-        transfer: 'Окупљање и трансфер',
-        gifts: 'Шта поклонити?',
-        menu: 'Мени',
-    },
+const ru = {
+  popColor: "Лопнуть цвет",
+  paletteYellow: "Жёлтый",
+  palettePeach: "Персиковый",
+  paletteBlue: "Голубой",
+  paletteOlive: "Оливковый",
+  palettePink: "Розовый",
+  paletteLavender: "Лавандовый",
+  eventEnded: "Событие завершилось :(",
+  couple: "Маша и Лёша",
+  confirmAttendance: "Подтвердите присутствие до 1 сентября",
+  yourName: "Ваше имя и фамилия",
+  yourNamePlaceholder: "Например: Александр",
+  willYouAttend: "Вы сможете присутствовать?",
+  yesAttend: "✅ Да, приду",
+  noAttend: "❌ Нет, не смогу",
+  submitResponse: "Отправить ответ",
+  thankYouYes: "Спасибо! Ждем вас на празднике! 🎉",
+  thankYouNo: "Нам будет вас не хватать. Спасибо за ответ! 💔",
+  pleaseEnterName: "Пожалуйста, укажите ваше имя",
+  language: "Язык",
+  schedule: "Что вас ждёт:",
+  gifts: "Что подарить?",
+  submitError: "Ошибка при отправке. Попробуйте позже.",
+  weddingDate: "26 Сентября 2026",
+  invitationGreeting:
+    "Дорогие, родные и близкие! Приглашаем вас на наш первый семейный праздник - нашу свадьбу!",
+  invitationWhen: "Будем ждать вас",
+  invitationWhere: "Встретимся",
+  invitationPlaceDescription: "среди зелёного леса на малой веранде ",
+  scheduleArrival: "Сбор гостей",
+  scheduleCeremony: "Церемония",
+  scheduleDinner: "Свадебный ужин",
+  scheduleEnd: "Завершение банкета",
+  scheduleTransfer: "Трансфер до ВДНХ",
+  giftsDescription:
+    "Не ломайте голову - ваши пожелания в конвертах станут ключом к нашим мечтам.",
+  weddingDateLong: "26 сентября 2026",
+  dressInspiration: "Примеры для вдохновения",
+  organizerHelp: "По вопросам можете обращаться к нашему организатору.",
+  paletteTitle: "Наше торжество будет оформлено в такой палитре:",
+  paletteInvitation:
+    "При желании, можете поддержать цветовую гамму в своих нарядах.",
+  paletteFreedom:
+    "Если хотите надеть что-то посветлее, потемнее, поярче, в цветочек или полосочку - всё можно. Давайте устроим разноцветный праздник!",
+  paletteAvoid: "Просим избегать чёрный, бордовый, красный и белый цвета.",
+  radioTitle: "Радио Окно и Сауна, 11.04FM",
+  radioDescription: "· DJs MaRussia и Alexis собрали свои любимые треки ·",
+  venue: "Загородного клуба «Онегин»",
+  organizerContact: "+7 (951) 673-47-37, Вероника",
+  telegram: "Telegram",
+  whatsApp: "WhatsApp",
+  invitation: "Приглашение",
+  memories: "Фото и видео",
+  navigation: "Навигация",
+  memoriesTitle: "Наш день в кадрах",
+  memoriesDescription:
+    "Спасибо, что разделили этот день с нами. Здесь соберём фотографии и видео нашей свадьбы.",
+  photosTitle: "Фотографии",
+  videosTitle: "Видео",
+  photoAlbum: "Все фотографии",
+  photoAlbumDescription: "Сохраните любимые кадры на память.",
+  weddingVideo: "Свадебный фильм",
+  weddingVideoDescription: "Переживём эти моменты ещё раз.",
+  openPhotos: "Открыть фотоальбом",
+  openVideo: "Смотреть видео",
+  mediaSoon: "Материалы скоро появятся",
+  previewAlt: "Маша и Лёша — превью альбома",
+  previewNote:
+    "Пока здесь наши фотографии из путешествий, свадебные материалы добавим позже.",
+  previousPhoto: "Предыдущее фото",
+  nextPhoto: "Следующее фото",
+  selectPhoto: "Показать фото",
+  play: "Воспроизвести",
+  pause: "Пауза",
+  playbackPosition: "Позиция воспроизведения",
+  audioError: "Не удалось воспроизвести трек. Попробуйте ещё раз.",
+  russian: "Русский",
+  serbian: "Сербский",
+  ruShort: "🇷🇺 РУ",
+  srShort: "🇷🇸 СР",
+  djGroom: "DJ Alexis",
+  djBride: "DJ MaRussia",
+  close: "Закрыть",
 };
+
+export type Translations = Record<keyof typeof ru, string>;
+export type TranslationKey = keyof Translations;
+export type Translate = (key: TranslationKey) => string;
+
+const sr: Translations = {
+  popColor: "Пукни мехурић",
+  paletteYellow: "Жута",
+  palettePeach: "Боја брескве",
+  paletteBlue: "Светлоплава",
+  paletteOlive: "Маслинаста",
+  palettePink: "Ружичаста",
+  paletteLavender: "Боја лаванде",
+  eventEnded: "Догађај је завршен :(",
+  couple: "Маша и Љоша",
+  confirmAttendance:
+    "Молимо вас да свој долазак потврдите најкасније до 1. септембра.",
+  yourName: "Ваше име и презиме",
+  yourNamePlaceholder: "На пример: Александар",
+  willYouAttend: "Моћи ћете да присуствујете?",
+  yesAttend: "✅ Да, доћи ћу",
+  noAttend: "❌ Не, нећу моћи",
+  submitResponse: "Потврди долазак",
+  thankYouYes: "Хвала вам! Чекамо вас на нашем венчању! 🎉",
+  thankYouNo: "Недостајаћете нам. Хвала на одговору! 💔",
+  pleaseEnterName: "Молимо вас да унесете ваше име",
+  language: "Језик",
+  schedule: "Како ће изгледати наш дан:",
+  gifts: "Шта поклонити?",
+  submitError: "Грешка приликом слања одговора - покушајте касније",
+  weddingDate: "26. Септембар 2026",
+  invitationGreeting:
+    "Драги наши, родбино и пријатељи! Позивамо вас да са нама поделите радост нашег првог породичног славља – нашег венчања!",
+  invitationWhen: "Са радошћу вас очекујемо",
+  invitationWhere: "Видимо се",
+  invitationPlaceDescription: "у срцу зелене шуме, на малој веранди  ",
+  scheduleArrival: "Дочек гостију",
+  scheduleCeremony: "Церемонија венчања",
+  scheduleDinner: "Свечана вечера и свадбено славље",
+  scheduleEnd: "Завршетак свечаности",
+  scheduleTransfer: "Организован превоз до ВДНХ",
+  giftsDescription:
+    "Не оптерећујте се избором поклона – ваша пажња у коверти помоћи ће нам да остваримо своје снове.",
+  weddingDateLong: "26. септембра 2026. године",
+  dressInspiration: "Инспирација за ваш избор",
+  organizerHelp:
+    "Уколико имате било каквих питања, наша организаторка ће вам радо помоћи.",
+  paletteTitle: "Наше славље ће бити организовано у одабраној палети боја:",
+  paletteInvitation:
+    "Уколико желите, можете ускладити своју одевну комбинацију са нашом колоритном темом.",
+  paletteFreedom:
+    "Ако, пак, више волите нешто светлије, тамније, упечатљивије, са цветним или пругастим дезеном – све је добродошло. Нека наша прослава буде шарена, весела и незаборавна!",
+  paletteAvoid:
+    "Љубазно вас молимо да избегавате одећу у црној, црвеној, бордо и белој боји.",
+  radioTitle: "Радио Прозор и Сауна, 11.04 ФМ",
+  radioDescription:
+    "· DJs MaRussia и Alexis су за вас припремили своје омиљене нумере ·",
+  venue: "Загородног клуба «Оњегин»",
+  organizerContact: "+7 (951) 673-47-37, Вероника",
+  telegram: "Telegram",
+  whatsApp: "WhatsApp",
+  invitation: "Позивница",
+  memories: "Фотографије и видео",
+  navigation: "Навигација",
+  memoriesTitle: "Наш дан у сликама",
+  memoriesDescription:
+    "Хвала вам што сте овај дан поделили са нама. Овде ћемо сакупити фотографије и видео-снимке нашег венчања.",
+  photosTitle: "Фотографије",
+  videosTitle: "Видео",
+  photoAlbum: "Све фотографије",
+  photoAlbumDescription: "Сачувајте омиљене тренутке за успомену.",
+  weddingVideo: "Свадбени филм",
+  weddingVideoDescription: "Проживимо ове тренутке још једном.",
+  openPhotos: "Отвори фото-албум",
+  openVideo: "Погледај видео",
+  mediaSoon: "Материјали стижу ускоро",
+  previewAlt: "Маша и Љоша — преглед албума",
+  previewNote:
+    "За сада су овде наше фотографије са путовања, свадбене материјале додаћемо касније.",
+  previousPhoto: "Претходна фотографија",
+  nextPhoto: "Следећа фотографија",
+  selectPhoto: "Прикажи фотографију",
+  play: "Пусти",
+  pause: "Пауза",
+  playbackPosition: "Положај репродукције",
+  audioError: "Није могуће пустити нумеру. Покушајте поново.",
+  russian: "Руски",
+  serbian: "Српски",
+  ruShort: "🇷🇺 РУ",
+  srShort: "🇷🇸 СР",
+  djGroom: "DJ Alexis",
+  djBride: "DJ MaRussia",
+  close: "Затвори",
+};
+
+export const translations: Record<Language, Translations> = { ru, sr };

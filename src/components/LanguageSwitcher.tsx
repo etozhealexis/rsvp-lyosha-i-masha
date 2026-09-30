@@ -1,73 +1,25 @@
-import React from 'react';
-import { ToggleButton, ToggleButtonGroup, Box, Paper } from '@mui/material';
-import type {Language} from '../locales/locales';
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useTranslation } from "../hooks/useTranslation";
+import type { Language } from "../locales/locales";
 
-interface LanguageSwitcherProps {
-    language: Language;
-    onLanguageChange: (lang: Language) => void;
+export function LanguageSwitcher() {
+  const { t, language, changeLanguage } = useTranslation();
+  return (
+    <ToggleButtonGroup
+      size="small"
+      value={language}
+      exclusive
+      onChange={(_, value: Language | null) => {
+        if (value) changeLanguage(value);
+      }}
+      aria-label={t("language")}
+    >
+      <ToggleButton value="ru" aria-label={t("russian")}>
+        {t("ruShort")}
+      </ToggleButton>
+      <ToggleButton value="sr" aria-label={t("serbian")}>
+        {t("srShort")}
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
 }
-
-export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
-                                                                      language,
-                                                                      onLanguageChange,
-                                                                  }) => {
-    const handleChange = (
-        _event: React.MouseEvent<HTMLElement>,
-        newLanguage: Language | null
-    ) => {
-        if (newLanguage !== null) {
-            onLanguageChange(newLanguage);
-            // Принудительно обновляем все компоненты через localStorage событие
-            localStorage.setItem('language', newLanguage);
-            window.dispatchEvent(new Event('storage'));
-        }
-    };
-
-    return (
-        <Box sx={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}>
-            <Paper elevation={3} sx={{ borderRadius: 3, overflow: 'hidden' }}>
-                <ToggleButtonGroup
-                    value={language}
-                    exclusive
-                    onChange={handleChange}
-                    aria-label="language selector"
-                >
-                    <ToggleButton
-                        value="ru"
-                        aria-label="russian"
-                        sx={{
-                            px: 2,
-                            py: 1,
-                            '&.Mui-selected': {
-                                backgroundColor: '#667eea',
-                                color: 'white',
-                                '&:hover': {
-                                    backgroundColor: '#5a67d8',
-                                },
-                            },
-                        }}
-                    >
-                        🇷🇺 РУ
-                    </ToggleButton>
-                    <ToggleButton
-                        value="sr"
-                        aria-label="serbian"
-                        sx={{
-                            px: 2,
-                            py: 1,
-                            '&.Mui-selected': {
-                                backgroundColor: '#667eea',
-                                color: 'white',
-                                '&:hover': {
-                                    backgroundColor: '#5a67d8',
-                                },
-                            },
-                        }}
-                    >
-                        🇷🇸 СР
-                    </ToggleButton>
-                </ToggleButtonGroup>
-            </Paper>
-        </Box>
-    );
-};
