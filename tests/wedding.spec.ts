@@ -5,36 +5,35 @@ test.beforeEach(async ({ page }) => {
   await page.route("https://script.google.com/**", (route) => route.abort());
 });
 
-test("materials page has links, language persistence and browser history", async ({
+test("photos page has an album link, language persistence and browser history", async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await page.getByRole("link", { name: "Фото и видео", exact: true }).click();
-  await expect(page).toHaveURL(/#\/memories$/);
+  await page.getByRole("link", { name: "Фото", exact: true }).click();
+  await expect(page).toHaveURL(/#\/photos$/);
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /^Наш (день в кадрах|дан у сликама)$/,
+      name: /^(Наш день в кадрах|Наш дан у сликама)$/,
     }),
   ).toHaveText(
     "Наш день в кадрах",
   );
-  await expect(page.locator("main img")).toHaveCount(0);
-  for (const link of await page.locator("main a").all()) {
-    await expect(link).toHaveAttribute(
-      "href",
-      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    );
-    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-  }
+  await expect(page.locator("main img")).toHaveCount(620);
+  const album = page.getByRole("link", { name: "Открыть папку с оригиналами" });
+  await expect(album).toHaveAttribute(
+    "href",
+    "https://drive.google.com/drive/folders/1TFV7yQAuQPaD8bh7msEiltTpRNqNVtEc?usp=sharing",
+  );
+  await expect(album).toHaveAttribute("rel", "noopener noreferrer");
   await page.getByRole("button", { name: "Сербский", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "sr");
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /^Наш (день в кадрах|дан у сликама)$/,
+      name: /^(Наш день в кадрах|Наш дан у сликама)$/,
     }),
   ).toHaveText(
     "Наш дан у сликама",
@@ -43,7 +42,7 @@ test("materials page has links, language persistence and browser history", async
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /^Наш (день в кадрах|дан у сликама)$/,
+      name: /^(Наш день в кадрах|Наш дан у сликама)$/,
     }),
   ).toHaveText(
     "Наш дан у сликама",
@@ -56,7 +55,7 @@ test("materials page has links, language persistence and browser history", async
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /^Наш (день в кадрах|дан у сликама)$/,
+      name: /^(Наш день в кадрах|Наш дан у сликама)$/,
     }),
   ).toHaveText(
     "Наш дан у сликама",
@@ -154,7 +153,7 @@ test("completed event keeps RSVP disabled and shows the translated notice", asyn
 });
 
 test("pages fit the viewport and preview images load", async ({ page }) => {
-  for (const path of ["/", "/#/memories"]) {
+  for (const path of ["/", "/#/photos", "/#/videos"]) {
     await page.goto(path);
     await expect
       .poll(() =>
@@ -164,20 +163,10 @@ test("pages fit the viewport and preview images load", async ({ page }) => {
       )
       .toBe(true);
   }
-  await expect
-    .poll(() =>
-      page
-        .locator("main img")
-        .evaluateAll((images) =>
-          images.every(
-            (img) =>
-              img instanceof HTMLImageElement &&
-              img.complete &&
-              img.naturalWidth > 0,
-          ),
-        ),
-    )
-    .toBe(true);
+  await page.goto("/#/photos");
+  const firstPhoto = page.locator("main img").first();
+  await expect(firstPhoto).toBeVisible();
+  await expect.poll(() => firstPhoto.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
 });
 
 test("pausing a pending audio play is cancellation, not a playback error", async ({
@@ -273,9 +262,9 @@ test("audio switches tracks, resets at the end and stops when leaving the page",
     .getByRole("button", { name: "Воспроизвести", exact: true })
     .first()
     .click();
-  await page.getByRole("link", { name: "Фото и видео", exact: true }).click();
-  expect(
-    await page.evaluate(() => Reflect.get(window, "testAudioStates")),
+  await page.getByRole("link", { name: "Фото", exact: true }).click();
+  await expect.poll(
+    () => page.evaluate(() => Reflect.get(window, "testAudioStates")),
   ).toEqual([true, true, true]);
 });
 
@@ -299,17 +288,125 @@ test("palette bubbles pop independently and can be popped again", async ({
   await expect(first).toHaveAttribute("aria-disabled", "false");
 });
 
-test("materials page shows only photo and video links", async ({
-  page,
-}) => {
-  await page.goto("/#/memories");
-  await expect(page.locator("main img")).toHaveCount(0);
-  await expect(page.getByRole("note")).toHaveCount(0);
-  await expect(page.locator("main a")).toHaveCount(2);
-  await expect(
-    page.getByRole("link", { name: "Открыть фотоальбом" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Смотреть видео" }),
-  ).toBeVisible();
+test("photo gallery and video link live on separate pages", async ({ page }) => {
+  await page.goto("/#/photos");
+  await expect(page.getByRole("link", { name: "Открыть папку с оригиналами" })).toBeVisible();
+  const photos = page.locator("main img");
+  await expect(photos).toHaveCount(620);
+  await expect(photos.last()).toHaveAttribute("loading", "lazy");
+  await photos.last().scrollIntoViewIfNeeded();
+  await expect.poll(() => photos.last().evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.getByRole("link", { name: "Смотреть видео" })).toHaveCount(0);
+  await page.getByRole("link", { name: "Видео", exact: true }).click();
+  await expect(page).toHaveURL(/#\/videos$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Видео нашего дня");
+  await expect(page.locator("main img, main video, main iframe")).toHaveCount(0);
+  await expect(page.locator("main a")).toHaveCount(1);
+  await expect(page.getByRole("link", { name: "Смотреть видео" })).toHaveAttribute("target", "_blank");
+  await page.reload();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Видео нашего дня");
+});
+
+test("gallery follows numeric filename order in a single horizontal row", async ({ page }) => {
+  await page.goto("/#/photos");
+  const photos = page.locator("main img");
+  await expect(photos).toHaveCount(620);
+  const sources = await photos.evaluateAll((images) => images.map((img) => img.getAttribute("src")!));
+  const expected = [...sources].sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+  expect(sources).toEqual(expected);
+  const bounds = await photos.evaluateAll((images) => images.slice(0, 4).map((img) => {
+    const { x, y, width, height } = img.getBoundingClientRect();
+    return { x, y, width, height, ratio: Number(img.getAttribute("width")) / Number(img.getAttribute("height")) };
+  }));
+  for (let index = 0; index < bounds.length; index++) {
+    expect(Math.abs(bounds[index]!.y + bounds[index]!.height / 2 - bounds[0]!.y - bounds[0]!.height / 2)).toBeLessThan(1);
+    expect(Math.abs(bounds[index]!.width / bounds[index]!.height - bounds[index]!.ratio)).toBeLessThan(0.01);
+    if (index > 0) expect(bounds[index]!.x).toBeGreaterThan(bounds[index - 1]!.x);
+  }
+});
+
+test("photo preview opens centered without a filename and closes with keyboard or button", async ({ page }) => {
+  await page.goto("/#/photos");
+  const thumbnail = page.getByRole("button", { name: "Свадебная фотография 1", exact: true });
+  const source = await thumbnail.locator("img").getAttribute("src");
+  await thumbnail.click();
+  const preview = page.getByRole("dialog", { name: "Свадебная фотография", exact: true });
+  await expect(preview).toBeVisible();
+  const photo = preview.getByRole("img");
+  await expect(photo).toHaveAttribute("src", source!);
+  await expect(preview).not.toContainText(/\.(webp|jpg)/);
+  const bounds = await photo.boundingBox();
+  const viewport = page.viewportSize()!;
+  expect(Math.abs(bounds!.x + bounds!.width / 2 - viewport.width / 2)).toBeLessThan(2);
+  expect(Math.abs(bounds!.y + bounds!.height / 2 - viewport.height / 2)).toBeLessThan(2);
+  await page.keyboard.press("Escape");
+  await expect(preview).toHaveCount(0);
+  await expect(thumbnail).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(preview).toBeVisible();
+  await preview.getByRole("button", { name: "Закрыть", exact: true }).click();
+  await expect(preview).toHaveCount(0);
+});
+
+
+test("mouse wheel scrolls photos horizontally only while hovering the strip", async ({ page }) => {
+  await page.goto("/#/photos");
+  const strip = page.getByRole("group", { name: "Фотографии", exact: true });
+  await strip.scrollIntoViewIfNeeded();
+  await strip.hover();
+  const top = await page.evaluate(() => window.scrollY);
+  await page.mouse.wheel(0, 400);
+  await expect.poll(() => strip.evaluate((element) => element.scrollLeft)).toBeGreaterThan(100);
+  expect(await page.evaluate(() => window.scrollY)).toBe(top);
+  const left = await strip.evaluate((element) => element.scrollLeft);
+  await page.mouse.wheel(250, 0);
+  await expect.poll(() => strip.evaluate((element) => element.scrollLeft)).toBeGreaterThan(left);
+  await page.mouse.wheel(0, -400);
+  await expect.poll(() => strip.evaluate((element) => element.scrollLeft)).toBeLessThan(left);
+  await page.getByRole("heading", { level: 1 }).hover();
+  const stoppedAt = await strip.evaluate((element) => element.scrollLeft);
+  await page.mouse.wheel(0, 300);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  expect(await strip.evaluate((element) => element.scrollLeft)).toBe(stoppedAt);
+});
+
+test("gallery scrollbar supports track clicks, dragging and follows wheel scrolling", async ({ page }) => {
+  await page.goto("/#/photos");
+  const strip = page.getByRole("group", { name: "Фотографии", exact: true });
+  const slider = page.getByRole("slider", { name: "Прокрутка фотографий", exact: true });
+  await expect(slider).toBeVisible();
+  await slider.scrollIntoViewIfNeeded();
+  const bar = page.locator('.MuiSlider-root');
+  const bounds = (await bar.boundingBox())!;
+  await page.mouse.click(bounds.x + bounds.width * 0.5, bounds.y + bounds.height / 2);
+  await expect.poll(() => strip.evaluate((el) => el.scrollLeft / (el.scrollWidth - el.clientWidth))).toBeGreaterThan(0.45);
+  const thumb = page.locator('.MuiSlider-thumb');
+  const handle = (await thumb.boundingBox())!;
+  await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + bounds.width * 0.75, bounds.y + bounds.height / 2, { steps: 8 });
+  await page.mouse.up();
+  await expect.poll(() => strip.evaluate((el) => el.scrollLeft / (el.scrollWidth - el.clientWidth))).toBeGreaterThan(0.7);
+  await slider.focus();
+  await page.keyboard.press("Home");
+  await expect.poll(() => strip.evaluate((el) => el.scrollLeft)).toBe(0);
+  await strip.hover();
+  await page.mouse.wheel(0, 600);
+  await expect.poll(async () => Number(await slider.getAttribute("aria-valuenow"))).toBeGreaterThan(0);
+});
+
+test("every photo fits the mobile strip without cropping", async ({ page }) => {
+  test.skip(page.viewportSize()!.width >= 600, "Mobile layout");
+  await page.goto("/#/photos");
+  const strip = page.getByRole("group", { name: "Фотографии", exact: true });
+  await expect(strip).toBeVisible();
+  for (const width of [390, 320, 568]) {
+    await page.setViewportSize({ width, height: 844 });
+    const fits = await strip.evaluate((element) => [...element.querySelectorAll("img")].every((image) => {
+      const bounds = image.getBoundingClientRect();
+      const ratio = Number(image.getAttribute("width")) / Number(image.getAttribute("height"));
+      return bounds.width <= element.clientWidth && bounds.height <= element.clientHeight && Math.abs(bounds.width / bounds.height - ratio) < 0.01;
+    }));
+    expect(fits).toBe(true);
+  }
 });

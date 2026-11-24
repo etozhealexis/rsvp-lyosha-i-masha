@@ -1,7 +1,8 @@
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { Box, Button, Container } from "@mui/material";
 import { InvitationPage } from "./pages/InvitationPage";
-import { MemoriesPage } from "./pages/MemoriesPage";
+import { PhotosPage } from "./pages/PhotosPage";
+import { VideosPage } from "./pages/VideosPage";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { FlowerBackground } from "./components/common/FlowerBackground";
 import { useTranslation } from "./hooks/useTranslation";
@@ -11,7 +12,15 @@ function subscribe(callback: () => void) {
   return () => window.removeEventListener("hashchange", callback);
 }
 function getPage() {
-  return window.location.hash === "#/memories" ? "memories" : "invitation";
+  switch (window.location.hash) {
+    case "#/photos":
+    case "#/memories": // Preserve previously shared links.
+      return "photos";
+    case "#/videos":
+      return "videos";
+    default:
+      return "invitation";
+  }
 }
 
 export default function App() {
@@ -66,14 +75,14 @@ export default function App() {
             aria-label={t("navigation")}
             sx={{ display: "flex", gap: 1 }}
           >
-            {(["invitation", "memories"] as const).map((item) => (
+            {(["invitation", "photos", "videos"] as const).map((item) => (
               <Button
                 key={item}
-                href={item === "invitation" ? "#/" : "#/memories"}
+                href={item === "invitation" ? "#/" : `#/${item}`}
                 aria-current={page === item ? "page" : undefined}
                 variant={page === item ? "contained" : "text"}
                 sx={{
-                  fontSize: { xs: "1.1rem", sm: "1.4rem" },
+                  fontSize: { xs: "1rem", sm: "1.4rem" },
                   textTransform: "none",
                   whiteSpace: "nowrap",
                 }}
@@ -91,7 +100,13 @@ export default function App() {
         tabIndex={-1}
         sx={{ position: "relative", zIndex: 1, outline: "none" }}
       >
-        {page === "memories" ? <MemoriesPage /> : <InvitationPage />}
+        {page === "photos" ? (
+          <PhotosPage />
+        ) : page === "videos" ? (
+          <VideosPage />
+        ) : (
+          <InvitationPage />
+        )}
       </Box>
     </Box>
   );
