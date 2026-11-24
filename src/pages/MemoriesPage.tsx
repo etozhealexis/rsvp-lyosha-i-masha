@@ -29,15 +29,6 @@ export function MemoriesPage() {
           {t("memoriesDescription")}
         </Typography>
       </Box>
-      {weddingMedia.isPlaceholder && (
-        <Typography
-          role="note"
-          variant="h6"
-          sx={{ textAlign: "center", mb: 4 }}
-        >
-          {t("previewNote")}
-        </Typography>
-      )}
       <Box component="section" aria-labelledby="photos-heading" sx={{ mb: 7 }}>
         <Typography
           id="photos-heading"
@@ -47,41 +38,6 @@ export function MemoriesPage() {
         >
           {t("photosTitle")}
         </Typography>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" },
-            gap: 3,
-            mb: 4,
-          }}
-        >
-          {weddingMedia.previews.map((photo, index) => (
-            <Box
-              key={photo.id}
-              sx={{
-                display: "block",
-                bgcolor: "white",
-                p: 1.5,
-                pb: 4,
-                boxShadow: "0 8px 24px #00000012",
-                transform: { sm: `rotate(${index % 2 ? 2 : -2}deg)` },
-              }}
-            >
-              <Box
-                component="img"
-                src={photo.src}
-                alt={`${t(photo.altKey)} ${index + 1}`}
-                loading="lazy"
-                sx={{
-                  display: "block",
-                  width: "100%",
-                  aspectRatio: "4 / 5",
-                  objectFit: "cover",
-                }}
-              />
-            </Box>
-          ))}
-        </Box>
         <Box sx={{ display: "grid", gap: 3 }}>
           {weddingMedia.photos.map((resource) => (
             <MediaCard key={resource.id} resource={resource} />

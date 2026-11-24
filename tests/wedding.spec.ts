@@ -5,7 +5,7 @@ test.beforeEach(async ({ page }) => {
   await page.route("https://script.google.com/**", (route) => route.abort());
 });
 
-test("materials page has previews, links, language persistence and browser history", async ({
+test("materials page has links, language persistence and browser history", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -13,10 +13,15 @@ test("materials page has previews, links, language persistence and browser histo
   await page.goto("/");
   await page.getByRole("link", { name: "Фото и видео", exact: true }).click();
   await expect(page).toHaveURL(/#\/memories$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: /^Наш (день в кадрах|дан у сликама)$/,
+    }),
+  ).toHaveText(
     "Наш день в кадрах",
   );
-  await expect(page.locator("main img")).toHaveCount(3);
+  await expect(page.locator("main img")).toHaveCount(0);
   for (const link of await page.locator("main a").all()) {
     await expect(link).toHaveAttribute(
       "href",
@@ -26,11 +31,21 @@ test("materials page has previews, links, language persistence and browser histo
   }
   await page.getByRole("button", { name: "Сербский", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "sr");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: /^Наш (день в кадрах|дан у сликама)$/,
+    }),
+  ).toHaveText(
     "Наш дан у сликама",
   );
   await page.reload();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: /^Наш (день в кадрах|дан у сликама)$/,
+    }),
+  ).toHaveText(
     "Наш дан у сликама",
   );
   await page.getByRole("link", { name: "Позивница", exact: true }).click();
@@ -38,7 +53,12 @@ test("materials page has previews, links, language persistence and browser histo
     page.getByRole("heading", { name: "26. Септембар 2026", exact: true }),
   ).toBeVisible();
   await page.goBack();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: /^Наш (день в кадрах|дан у сликама)$/,
+    }),
+  ).toHaveText(
     "Наш дан у сликама",
   );
   await page.goForward();
@@ -279,11 +299,12 @@ test("palette bubbles pop independently and can be popped again", async ({
   await expect(first).toHaveAttribute("aria-disabled", "false");
 });
 
-test("photo previews are not links and only text opens media", async ({
+test("materials page shows only photo and video links", async ({
   page,
 }) => {
   await page.goto("/#/memories");
-  await expect(page.locator("main a img")).toHaveCount(0);
+  await expect(page.locator("main img")).toHaveCount(0);
+  await expect(page.getByRole("note")).toHaveCount(0);
   await expect(page.locator("main a")).toHaveCount(2);
   await expect(
     page.getByRole("link", { name: "Открыть фотоальбом" }),
@@ -291,6 +312,4 @@ test("photo previews are not links and only text opens media", async ({
   await expect(
     page.getByRole("link", { name: "Смотреть видео" }),
   ).toBeVisible();
-  await page.locator("main img").first().click();
-  await expect(page).toHaveURL(/#\/memories$/);
 });
