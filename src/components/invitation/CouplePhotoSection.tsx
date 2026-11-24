@@ -1,8 +1,8 @@
 import { Box, Container } from "@mui/material";
 import { useTranslation } from "../../hooks/useTranslation";
 import { FloatingImage } from "../common/DecorativeLayout";
-import cute from "../../assets/images/our-photos/cute.jpg";
-import china from "../../assets/images/our-photos/china.png";
+import cute from "../../assets/images/our-photos/cute.webp";
+import china from "../../assets/images/our-photos/china.webp";
 
 export function CouplePhotoSection() {
   const { t } = useTranslation();

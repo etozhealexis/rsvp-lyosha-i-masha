@@ -3,7 +3,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { FloatingImage } from "../common/DecorativeLayout";
 import { ExternalLink } from "../common/ExternalLink";
 import { RSVPForm } from "../RSVPForm";
-import kaliningrad from "../../assets/images/our-photos/kaliningrad.png";
+import kaliningrad from "../../assets/images/our-photos/kaliningrad.webp";
 
 export function ResponseSection() {
   const { t } = useTranslation();

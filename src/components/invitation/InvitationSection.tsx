@@ -6,7 +6,7 @@ import {
   RotatedBox,
 } from "../common/DecorativeLayout";
 import { ExternalLink } from "../common/ExternalLink";
-import japan from "../../assets/images/our-photos/japan.png";
+import japan from "../../assets/images/our-photos/japan.webp";
 
 export function InvitationSection() {
   const { t } = useTranslation();

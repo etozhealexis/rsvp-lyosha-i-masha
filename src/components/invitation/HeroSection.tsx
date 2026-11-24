@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "../../hooks/useTranslation";
 import { FloatingImage, OffsetBox } from "../common/DecorativeLayout";
-import paris from "../../assets/images/our-photos/paris.png";
-import carcassone from "../../assets/images/our-photos/carcassone.png";
+import paris from "../../assets/images/our-photos/paris.webp";
+import carcassone from "../../assets/images/our-photos/carcassone.webp";
 
 export function HeroSection() {
   const { t } = useTranslation();

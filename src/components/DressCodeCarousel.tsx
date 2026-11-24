@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import { useTranslation } from "../hooks/useTranslation";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import dressPhoto1 from "../assets/images/carousel/image-1.png";
-import dressPhoto2 from "../assets/images/carousel/image-2.png";
-import dressPhoto3 from "../assets/images/carousel/image-3.jpg";
-import dressPhoto4 from "../assets/images/carousel/image-4.png";
-import dressPhoto5 from "../assets/images/carousel/image-5.jpg";
-import dressPhoto6 from "../assets/images/carousel/image-6.png";
+import dressPhoto1 from "../assets/images/carousel/image-1.webp";
+import dressPhoto2 from "../assets/images/carousel/image-2.webp";
+import dressPhoto3 from "../assets/images/carousel/image-3.webp";
+import dressPhoto4 from "../assets/images/carousel/image-4.webp";
+import dressPhoto5 from "../assets/images/carousel/image-5.webp";
+import dressPhoto6 from "../assets/images/carousel/image-6.webp";
 
 interface DressCodeCarouselProps {
   title: string;
